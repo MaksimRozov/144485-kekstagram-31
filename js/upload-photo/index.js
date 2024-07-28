@@ -1,24 +1,24 @@
-import {toggleClass, isEscapeKey} from '../util';
-import {pristine, onValidateListener} from '../validation-form';
-import {imgUploadInput, imgUpoadOverlay, imgUploadancel, effectsPreview, effectLevelSliderParrent, uploadPreviewImage, FILE_TYPES, scaleControlBigger, scaleControlSmaller} from './uploadPhotoVariables';
-import {inputTextHashtag, commentForm, imgUploadForm} from '../validation-form';
-import {onShowErrorGetData } from '../api/secondary-functions';
-import {onIncreaseScale, onDecreaseScale} from '../add-effects-scale';
+import { toggleClass, isEscapeKey } from '../util';
+import { pristine, onValidateListener } from '../validation-form';
+import { imgUploadInput, imgUploadOverlay, imgUploadCancel, effectsPreview, effectLevelSliderParent, uploadPreviewImage, FILE_TYPES, scaleControlBigger, scaleControlSmaller } from './uploadPhotoVariables';
+import { inputTextHashtag, commentForm, imgUploadForm } from '../validation-form';
+import { onShowErrorGetData } from '../api/secondary-functions';
+import { onIncreaseScale, onDecreaseScale } from '../add-effects-scale';
 
 const onCloseChangePhoto = () => {
   pristine.reset();
-  toggleClass(imgUpoadOverlay, false);
+  toggleClass(imgUploadOverlay, false);
   imgUploadForm.reset();
   uploadPreviewImage.style.removeProperty('filter');
   uploadPreviewImage.style.removeProperty('transform');
   document.removeEventListener('keydown', onCloseChangePhotoEsc);
-  imgUploadancel.removeEventListener('click', onCloseChangePhoto);
+  imgUploadCancel.removeEventListener('click', onCloseChangePhoto);
   imgUploadForm.removeEventListener('submit', onValidateListener);
   scaleControlBigger.removeEventListener('click', onIncreaseScale);
   scaleControlSmaller.removeEventListener('click', onDecreaseScale);
 };
 
-function onCloseChangePhotoEsc(evt){
+function onCloseChangePhotoEsc(evt) {
   if (isEscapeKey(evt) && !(document.activeElement === inputTextHashtag || document.activeElement === commentForm)) {
     onCloseChangePhoto();
   } else {
@@ -27,10 +27,10 @@ function onCloseChangePhotoEsc(evt){
 }
 
 const onOpenChangePhoto = () => {
-  toggleClass(imgUpoadOverlay);
-  effectLevelSliderParrent.classList.add('hidden');
+  toggleClass(imgUploadOverlay);
+  effectLevelSliderParent.classList.add('hidden');
   document.addEventListener('keydown', onCloseChangePhotoEsc);
-  imgUploadancel.addEventListener('click', onCloseChangePhoto);
+  imgUploadCancel.addEventListener('click', onCloseChangePhoto);
   imgUploadForm.addEventListener('submit', onValidateListener);
   scaleControlBigger.addEventListener('click', onIncreaseScale);
   scaleControlSmaller.addEventListener('click', onDecreaseScale);
@@ -59,4 +59,4 @@ const onOpenChangePhotoListener = () => {
   imgUploadInput.addEventListener('change', onSelectImage);
 };
 
-export {onOpenChangePhotoListener, onCloseChangePhoto, onCloseChangePhotoEsc};
+export { onOpenChangePhotoListener, onCloseChangePhoto, onCloseChangePhotoEsc };

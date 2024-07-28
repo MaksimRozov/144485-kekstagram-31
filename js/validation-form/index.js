@@ -1,6 +1,6 @@
-import {sendData} from '../api';
-import {onSendSuccessMessage, onSendErrorMessage, blockSubmitButton, unblockSubmitButton} from '../api/secondary-functions';
-import {onCloseChangePhoto} from '../upload-photo';
+import { sendData } from '../api';
+import { onSendSuccessMessage, onSendErrorMessage, blockSubmitButton, unblockSubmitButton } from '../api/secondary-functions';
+import { onCloseChangePhoto } from '../upload-photo';
 
 export const imgUploadForm = document.querySelector('.img-upload__form');
 export const inputTextHashtag = imgUploadForm.querySelector('.text__hashtags');
@@ -40,12 +40,12 @@ const pristine = new Pristine(imgUploadForm, {
 
 pristine.addValidator(inputTextHashtag, onValidateHashtagRegex, 'Введён невалидный хэштег');
 pristine.addValidator(inputTextHashtag, onUniqueHashtag, 'Хэштеги повторяются');
-pristine.addValidator(inputTextHashtag, onHashtagLimitLength, 'Превышено количество хэштегов');
+pristine.addValidator(inputTextHashtag, onHashtagLimitLength, 'Превышено количество хештегов');
 pristine.addValidator(commentForm, onValidateCommentForm, 'Длина комментария больше 140 символов');
 
 const onValidateListener = (evt) => {
   evt.preventDefault();
-  if(pristine.validate()) {
+  if (pristine.validate()) {
     blockSubmitButton();
     sendData(new FormData(evt.target))
       .then(() => {
@@ -64,4 +64,4 @@ const onValidateListener = (evt) => {
 };
 
 
-export {onValidateListener, pristine};
+export { onValidateListener, pristine };
